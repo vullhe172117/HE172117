@@ -4,7 +4,6 @@
  */
 package entity;
 
-import java.math.BigDecimal;
 
 /**
  *
@@ -13,39 +12,39 @@ import java.math.BigDecimal;
 public class Cars {
     private int id;
     private String Type;
-    private String brand;
+    private String Brand;
     private String Model;
     private String FirstRegistration;
     private int Mileage;
     private String FuelType;
     private int Engine;
-    private int power;
+    private int Power;
     private String Gearbox;
     private int NumberOfSeats;
     private int NumberOfDoors;
-    private String color;
-    private double price;
-    private String image_url;
+    private String Color;
+    private double Price;
+    private String Image_url;
 
     public Cars() {
     }
 
-    public Cars(int id, String Type, String brand, String Model, String FirstRegistration, int Mileage, String FuelType, int Engine, int power, String Gearbox, int NumberOfSeats, int NumberOfDoors, String color, double price, String image_url) {
+    public Cars(int id, String Type, String Brand, String Model, String FirstRegistration, int Mileage, String FuelType, int Engine, int Power, String Gearbox, int NumberOfSeats, int NumberOfDoors, String Color, double Price, String Image_url) {
         this.id = id;
         this.Type = Type;
-        this.brand = brand;
+        this.Brand = Brand;
         this.Model = Model;
         this.FirstRegistration = FirstRegistration;
         this.Mileage = Mileage;
         this.FuelType = FuelType;
         this.Engine = Engine;
-        this.power = power;
+        this.Power = Power;
         this.Gearbox = Gearbox;
         this.NumberOfSeats = NumberOfSeats;
         this.NumberOfDoors = NumberOfDoors;
-        this.color = color;
-        this.price = price;
-        this.image_url = image_url;
+        this.Color = Color;
+        this.Price = Price;
+        this.Image_url = Image_url;
     }
 
     public int getId() {
@@ -65,11 +64,11 @@ public class Cars {
     }
 
     public String getBrand() {
-        return brand;
+        return Brand;
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.Brand = brand;
     }
 
     public String getModel() {
@@ -113,11 +112,11 @@ public class Cars {
     }
 
     public int getPower() {
-        return power;
+        return Power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setPower(int Power) {
+        this.Power = Power;
     }
 
     public String getGearbox() {
@@ -145,32 +144,32 @@ public class Cars {
     }
 
     public String getColor() {
-        return color;
+        return Color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColor(String Color) {
+        this.Color = Color;
     }
 
     public double getPrice() {
-        return price;
+        return Price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(double Price) {
+        this.Price = Price;
     }
 
     public String getImage_url() {
-        return image_url;
+        return Image_url;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImage_url(String Image_url) {
+        this.Image_url = Image_url;
     }
 
     @Override
     public String toString() {
-        return "Cars{" + "id=" + id + ", Type=" + Type + ", brand=" + brand + ", Model=" + Model + ", FirstRegistration=" + FirstRegistration + ", Mileage=" + Mileage + ", FuelType=" + FuelType + ", Engine=" + Engine + ", power=" + power + ", Gearbox=" + Gearbox + ", NumberOfSeats=" + NumberOfSeats + ", NumberOfDoors=" + NumberOfDoors + ", color=" + color + ", price=" + price + ", image_url=" + image_url + '}';
+        return "Cars{" + "id=" + id + ", Type=" + Type + ", Brand=" + Brand + ", Model=" + Model + ", FirstRegistration=" + FirstRegistration + ", Mileage=" + Mileage + ", FuelType=" + FuelType + ", Engine=" + Engine + ", Power=" + Power + ", Gearbox=" + Gearbox + ", NumberOfSeats=" + NumberOfSeats + ", NumberOfDoors=" + NumberOfDoors + ", color=" + Color + ", price=" + Price + ", image_url=" + Image_url + '}';
     }
     
     

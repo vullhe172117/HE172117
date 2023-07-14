@@ -5,6 +5,7 @@
 package controll;
 
 import dao.DAO;
+import entity.Brand;
 import entity.Cars;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -18,8 +19,8 @@ import java.util.List;
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "homeControl", urlPatterns = {"/home"})
-public class homeControl extends HttpServlet {
+@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
+public class carsControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,11 +36,13 @@ public class homeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //b1: get data from DAO
         DAO dao = new DAO();
-        List<Cars> list = dao.getAllCars();
+        List<Cars> listC = dao.getAllCars();
+        List<Brand> listB = dao.getAllBrand();
         
         //b2: set dâta to html
-        request.setAttribute("listC",list);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        request.setAttribute("listC",listC);
+        request.setAttribute("listB",listB);
+        request.getRequestDispatcher("cars.jsp").forward(request, response);
         }
     
 

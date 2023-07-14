@@ -6,6 +6,7 @@ package dao;
 
 
 import context.DBConnect;
+import entity.Brand;
 import entity.Cars;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,13 +50,33 @@ public class DAO {
                         rs.getString(15)));
             }
         } catch (Exception e) {
-        }      
+    }      
         return list;
     }
+    
+    public List<Brand> getAllBrand(){
+        List<Brand> list = new ArrayList<>();
+        String query = "select * from brand";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new Brand(
+                        rs.getInt(1), 
+                        rs.getString(2)
+                        ));
+            }
+        } catch (Exception e) {
+    }      
+        return list;
+    }
+    
     public static void main(String[] args){
         DAO dao = new DAO();
         List<Cars> list = dao.getAllCars();
-        for (Cars o : list) {
+        List<Brand> listB = dao.getAllBrand();
+        for (Brand o : listB) {
             System.out.println(o);
         }
     }
