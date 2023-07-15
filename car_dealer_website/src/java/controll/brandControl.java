@@ -10,17 +10,17 @@ import entity.Cars;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServlet;
 import java.util.List;
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "brandControl", urlPatterns = {"/brand"})
+public class brandControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +34,16 @@ public class carsControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
+        String brID = request.getParameter("bid");
         DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
+        List<Cars> list = dao.getCarByBID(brID);
         List<Brand> listB = dao.getAllBrand();
         
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
         request.setAttribute("listB",listB);
+        request.setAttribute("listC",list);
+        request.setAttribute("tag",brID);
         request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
-        }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

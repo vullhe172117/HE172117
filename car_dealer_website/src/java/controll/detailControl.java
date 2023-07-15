@@ -5,22 +5,21 @@
 package controll;
 
 import dao.DAO;
-import entity.Brand;
 import entity.Cars;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServlet;
-import java.util.List;
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "detailControl", urlPatterns = {"/detail"})
+public class detailControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +33,15 @@ public class carsControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
+        String Id = request.getParameter("cid");
         DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
-        List<Brand> listB = dao.getAllBrand();
+        Cars c =dao.getCarByID(Id);
         
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
-        request.setAttribute("listB",listB);
-        request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
+        
+        request.setAttribute("detail",c);
+        request.getRequestDispatcher("detail.jsp").forward(request, response);
+        
+        
         }
     
 

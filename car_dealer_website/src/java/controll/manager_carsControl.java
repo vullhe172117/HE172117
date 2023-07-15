@@ -5,6 +5,7 @@
 package controll;
 
 import dao.DAO;
+import entity.Account;
 import entity.Brand;
 import entity.Cars;
 import java.io.IOException;
@@ -13,14 +14,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "manager_carsControl", urlPatterns = {"/manager_cars"})
+public class manager_carsControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +35,7 @@ public class carsControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
-        DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
-        List<Brand> listB = dao.getAllBrand();
         
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
-        request.setAttribute("listB",listB);
-        request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
         }
     
 
@@ -59,7 +51,18 @@ public class carsControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        //b1: get data from DAO
+        //HttpSession session = request.getSession();
+        //Account a = (Account) request.getAttribute(string);
+        DAO dao = new DAO();
+        List<Cars> list = dao.getAllCars();
+        List<Brand> listB = dao.getAllBrand();
+        
+        //b2: set dâta to html
+        request.setAttribute("listC",list);
+        request.setAttribute("ListB",listB);
+        request.getRequestDispatcher("manager_cars.jsp").forward(request, response);
     }
 
     /**

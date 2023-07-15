@@ -5,22 +5,23 @@
 package controll;
 
 import dao.DAO;
-import entity.Brand;
-import entity.Cars;
+import entity.Account;
+
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServlet;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "loginControl", urlPatterns = {"/login"})
+public class loginControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +35,20 @@ public class carsControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
+        String username = request.getParameter("user");
+        String password = request.getParameter("pass");
         DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
-        List<Brand> listB = dao.getAllBrand();
-        
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
-        request.setAttribute("listB",listB);
-        request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
+        Account a = dao.login(username, password);
+        if (a == null) {
+            request.setAttribute("mess", "Wrong username or password!!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", a);
+            session.setMaxInactiveInterval(300);
+            response.sendRedirect("home");
         }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

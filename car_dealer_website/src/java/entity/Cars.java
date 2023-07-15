@@ -10,7 +10,7 @@ package entity;
  * @author PC LONG VU
  */
 public class Cars {
-    private int id;
+    private int Id;
     private String Type;
     private String Brand;
     private String Model;
@@ -29,8 +29,8 @@ public class Cars {
     public Cars() {
     }
 
-    public Cars(int id, String Type, String Brand, String Model, String FirstRegistration, int Mileage, String FuelType, int Engine, int Power, String Gearbox, int NumberOfSeats, int NumberOfDoors, String Color, double Price, String Image_url) {
-        this.id = id;
+    public Cars(int Id, String Type, String Brand, String Model, String FirstRegistration, int Mileage, String FuelType, int Engine, int Power, String Gearbox, int NumberOfSeats, int NumberOfDoors, String Color, double Price, String Image_url) {
+        this.Id = Id;
         this.Type = Type;
         this.Brand = Brand;
         this.Model = Model;
@@ -48,11 +48,11 @@ public class Cars {
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     public String getType() {
@@ -169,7 +169,7 @@ public class Cars {
 
     @Override
     public String toString() {
-        return "Cars{" + "id=" + id + ", Type=" + Type + ", Brand=" + Brand + ", Model=" + Model + ", FirstRegistration=" + FirstRegistration + ", Mileage=" + Mileage + ", FuelType=" + FuelType + ", Engine=" + Engine + ", Power=" + Power + ", Gearbox=" + Gearbox + ", NumberOfSeats=" + NumberOfSeats + ", NumberOfDoors=" + NumberOfDoors + ", color=" + Color + ", price=" + Price + ", image_url=" + Image_url + '}';
+        return "Cars{" + "Id=" + Id + ", Type=" + Type + ", Brand=" + Brand + ", Model=" + Model + ", FirstRegistration=" + FirstRegistration + ", Mileage=" + Mileage + ", FuelType=" + FuelType + ", Engine=" + Engine + ", Power=" + Power + ", Gearbox=" + Gearbox + ", NumberOfSeats=" + NumberOfSeats + ", NumberOfDoors=" + NumberOfDoors + ", color=" + Color + ", price=" + Price + ", image_url=" + Image_url + '}';
     }
     
     

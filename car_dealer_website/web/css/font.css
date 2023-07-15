@@ -20,6 +20,10 @@
     transform: translate(0, 0)
 }
 
+.w{
+    color: white;
+}
+
 .fa-lg {
     font-size: 1.33333333em;
     line-height: .75em;

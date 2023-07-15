@@ -1,26 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package controll;
 
 import dao.DAO;
-import entity.Brand;
-import entity.Cars;
+import entity.Account;
+
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServlet;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "logoutControl", urlPatterns = {"/logout"})
+public class logoutControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +31,10 @@ public class carsControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
-        DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
-        List<Brand> listB = dao.getAllBrand();
-        
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
-        request.setAttribute("listB",listB);
-        request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
-        }
-    
+        HttpSession session = request.getSession();
+        session.removeAttribute("acc");
+        response.sendRedirect("home");
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

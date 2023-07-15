@@ -5,22 +5,20 @@
 package controll;
 
 import dao.DAO;
-import entity.Brand;
-import entity.Cars;
+import entity.Account;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServlet;
-import java.util.List;
 
 /**
  *
  * @author PC LONG VU
  */
-@WebServlet(name = "carsControl", urlPatterns = {"/cars.jsp"})
-public class carsControl extends HttpServlet {
+@WebServlet(name = "signupControl", urlPatterns = {"/signup"})
+public class signupControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +32,24 @@ public class carsControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
-        DAO dao = new DAO();
-        List<Cars> listC = dao.getAllCars();
-        List<Brand> listB = dao.getAllBrand();
-        
-        //b2: set dâta to html
-        request.setAttribute("listC",listC);
-        request.setAttribute("listB",listB);
-        request.getRequestDispatcher("cars.jsp").forward(request, response);
-        request.getRequestDispatcher("car_detail.jsp").forward(request, response);
-        }
-    
+         String username = request.getParameter("user");
+         String password = request.getParameter("pass");
+         String re_password = request.getParameter("repass");
+         if(!password.equals(re_password)){
+             response.sendRedirect("login.jsp");
+         }else{
+             DAO dao = new DAO();
+             Account a = dao.checkAccountExist(username);
+             if(a == null){
+                 // cho signup
+                 dao.signup(username, password);
+                 request.getRequestDispatcher("home").forward(request, response);
+             }else{
+                 //ve login
+                 response.sendRedirect("login.jsp");
+             }
+         }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
